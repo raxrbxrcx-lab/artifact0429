@@ -12,7 +12,7 @@ _CATEGORIES = [
     ('128bit', re.compile(r'^xmm\d+$')),
     ('256bit', re.compile(r'^ymm\d+$')),
     ('512bit', re.compile(r'^zmm\d+$')),
-    ('PC',     re.compile(r'^rip$')),
+    ('PC',     re.compile(r'^(eip|rip)$')),
     ('Special',    re.compile(r'^(eiz|riz)$')),
 ]
 
