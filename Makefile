@@ -16,8 +16,8 @@ fast: $(FAST_ARCHS)
 COMPILER_OPT ?=
 
 # Run ASymProbe for each architecture
-$(X86_ARCHS):
-	$(foreach syntax,$(SYNTAXES),python3 asymprobe.py $@ --syntax $(syntax) $(COMPILER_OPT);)
+$(ARCHS):
+	$(if $(filter $@,$(X86_ARCHS)),$(foreach syntax,$(SYNTAXES),python3 asymprobe.py $@ --syntax $(syntax) $(COMPILER_OPT);),python3 asymprobe.py $@ $(COMPILER_OPT))
 
 x86_intel:
 	python3 asymprobe.py x86 --syntax intel $(COMPILER_OPT)
@@ -31,16 +31,10 @@ patch-x86_intel:
 patch-x86-64_intel:
 	python3 asymprobe.py -patch x86-64 --syntax intel $(COMPILER_OPT)
 
-$(NON_X86_ARCHS):
-	python3 asymprobe.py $@ $(COMPILER_OPT)
-
 patch: $(addprefix patch-,$(FAST_ARCHS))
 
-$(addprefix patch-,$(X86_ARCHS)):
-	python3 asymprobe.py -patch $(patsubst patch-%,%,$@) --syntax intel $(COMPILER_OPT)
-
-$(addprefix patch-,$(NON_X86_ARCHS)):
-	python3 asymprobe.py -patch $(patsubst patch-%,%,$@) $(COMPILER_OPT)
+$(addprefix patch-,$(ARCHS)):
+	$(if $(filter $(patsubst patch-%,%,$@),$(X86_ARCHS)),python3 asymprobe.py -patch $(patsubst patch-%,%,$@) --syntax intel $(COMPILER_OPT),python3 asymprobe.py -patch $(patsubst patch-%,%,$@) $(COMPILER_OPT))
 
 # Extract coreutils source archive
 setup:
