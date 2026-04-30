@@ -49,7 +49,7 @@ The preprocessing step compiles the dataset and collects generated assembly file
 
 This step applies the compilation options described in Section 4.1.1 of the paper. It is expected to take approximately 2--4 hours.
 
-This step is optional because pre-generated template files are already included in the `templates/` directory.
+This step is optional because pre-generated template files are already included in the `template/` directory.
 
 #### 2.1.1. Extract the Dataset
 
@@ -120,12 +120,13 @@ Each `.txt` file contains example code snippets that trigger ambiguity for the c
 
 ## 3. Reproducing Example Programs
 
-The example programs discussed in the paper are provided under the `example/` directory. Each example has its own subdirectory and Makefile.
+The example programs discussed in the paper are provided under the `examples/` directory. Each example has its own subdirectory and Makefile.
 
 To build and run all examples, use:
 
 ```bash
-make docker-examples
+cd examples/
+make
 ```
 
 Alternatively, each example can be reproduced individually as shown below.
@@ -217,11 +218,11 @@ The main output directories are:
 
 | Directory        | Description                                               |
 | ---------------- | --------------------------------------------------------- |
-| `templates/`     | Instruction templates used by ASymProbe                   |
+| `template/`      | Instruction templates used by ASymProbe                   |
 | `dataset/build/` | Intermediate build outputs generated during preprocessing |
 | `output/`        | Raw ambiguity detection results                           |
 | `bugs/`          | Summarized ambiguity cases used for the paper tables      |
-| `example/`       | Example programs discussed in the paper                   |
+| `examples/`      | Example programs discussed in the paper                   |
 
 ## 6. Artifact Notes
 
