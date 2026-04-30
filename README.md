@@ -43,7 +43,7 @@ make docker-build
 
 This section describes how to reproduce the main ambiguity results for the architectures where ambiguity was observed: x86 Intel syntax, x86-64 Intel syntax, and aarch64.
 
-### 2.1. Preprocessing
+### 2.1. Preprocessing *[Optional]*
 
 The preprocessing step compiles the dataset and collects generated assembly files. It then extracts instruction templates used by ASymProbe.
 
@@ -186,7 +186,7 @@ Write: 4096 bytes
 The illegal-instruction behavior in `case3_gcc` is expected.
 
 
-## 4. Reproducing the Full Results
+## 4. Reproducing the Full Results *[Optional]*
 
 This section describes how to reproduce the full evaluation over all 119 architecture/compiler/syntax combinations reported in the paper.
 
